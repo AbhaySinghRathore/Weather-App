@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather-app</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="icon-container">
+
+                <% if(weather === null){ %><h1>Weather Icon</h1><% }; %>
+                
+                <% if(weather !== null){ %>
+                <img src="http://openweathermap.org/img/wn/<%=weather.icon%>@2x.png"><% }; %>
+        
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="general-info">
+
+                <% if(weather === null){ %><div class="location">Enter a location</div>
+                <div class="status">To find The Weather</div><% }; %>
+
+                <% if(weather !== null){ %>
+                <div class="location"><%=weather.city%></div>
+                <% }; %>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail">
+                    <div class="title">Wind(Meter/sec)</div>
+                    
+                    <% if(weather === null){ %><div class="value_wind">TBD</div><% }; %>
+
+                    <% if(weather !== null){ %><div class="value_wind"> <%=weather.wind%></div><% }; %>
+                </div>
+                <div class="detail">
+                    <div class="title" data-temperature>Temperature(°C)</div>
+
+                    <% if(weather === null){ %><div class="value_temp">TBD</div><% }; %>
+
+                    <% if(weather !== null){ %><div class="value_temp"><%=weather.temperature%></div><% }; %>
+                </div>
+                <div class="detail">
+                    <div class="title">Description</div>
+
+                    <% if(weather === null){ %><div class="value_description">TBD</div><% }; %>
+                    
+                    <% if(weather !== null){ %><div class="value_description"><%=weather.description%></div><% }; %>
+                </div>
+            </div>
+
+            <form action="/" method="post" class="search-container" autocomplete="on">
+                
+                <input type="text" name="city" id="city-search" placeholder="Enter a location">
+
+                <input type="submit" id="search-btn" value="search">
+
+            </form>
+        </div>
+    </div>
+
+    <% if(error !== null){ %>
+      <p class="error"><%= error %></p>
+      <% } %>
+</body>
+
+</html>
